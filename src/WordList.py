@@ -1,7 +1,10 @@
 import WordTree
 import datetime;
-filename = "fiveletterwords.txt"
-#filename = "TESTfiveletterwords.txt"
+import pathlib
+
+ROOT_DIR = pathlib.Path(__file__).parent.parent
+filename = ROOT_DIR / "data/fiveletterwords.txt"
+#filename = ROOT_DIR / "TESTfiveletterwords.txt"
 
 # Returns a list of the largest list of words that have the most unique characters in them from a WordTree
 def getMostUniqueWordList(currentTree):
@@ -126,40 +129,3 @@ def getListsWithMostUsedLetters(lstHeterogramWords, letterWeights):
 
 
     print(f"The list of words with the most used letters is: {mostUsedWordList} with a weight of {primerWeight}")  
-
-
-def main():        
-    ct = datetime.datetime.now()
-    print("Start time:-", ct)
-    print("Getting all heterograms from file...")
-    lstHeterogramWords = getAllHeterograms()
-    print(f"Number of heterograms found: {len(lstHeterogramWords)}")
-    print("Getting letter weights from heterograms...")
-    letterWeights = getLetterWeight(lstHeterogramWords)
-
-
-    while True:
-        word = input("Enter a 5-letter word: ")
-
-        if len(word) == 5 and word.isalpha():
-            break
-
-        print("Please enter exactly 5 letters (A-Z).")
-
-    print(f"You entered: {word}")
-
-    ct = datetime.datetime.now()
-    print("Starting new tree time: ", ct)
-    aNewTree = checkForUnique(word, lstHeterogramWords)
-    ct = datetime.datetime.now()
-    print("New tree complete time: ", ct)
-
-    getListsWithMostUsedLetters(getMostUniqueWordList(aNewTree), letterWeights)
-
-    ct = datetime.datetime.now()
-    print("Find largest word completed time: ", ct)
-
-
-if __name__ == "__main__":
-    main()
-     
