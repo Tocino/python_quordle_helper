@@ -21,7 +21,7 @@ class WordTree:
     def getParent(self):
         return self.parent
 
-    def getWords(self):
+    def getChildernWords(self):
         return self.children
 
     def getWord(self):
